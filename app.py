@@ -7,10 +7,6 @@ from flask import Flask, request, render_template, session, flash, redirect, \
     url_for, jsonify
 from celery import Celery
 
-from OpenSSL import SSL
-context = SSL.Context(SSL.SSLv23_METHOD)
-context.use_privatekey_file('server.key')
-context.use_certificate_file('server.crt')
 
 
 app = Flask(__name__)
@@ -88,4 +84,4 @@ def taskstatus(task_id):
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True, ssl_context=context)
+    app.run(host='0.0.0.0', port=port, debug=True)
